@@ -7,6 +7,7 @@ import com.example.compose_arc.futures.notes.data.repository.NoteRepositoryImpl
 import com.example.compose_arc.futures.notes.domain.repository.NoteRepository
 import com.example.compose_arc.futures.notes.domain.usecase.AddNote
 import com.example.compose_arc.futures.notes.domain.usecase.DeleteNote
+import com.example.compose_arc.futures.notes.domain.usecase.GetNote
 import com.example.compose_arc.futures.notes.domain.usecase.GetNotes
 import com.example.compose_arc.futures.notes.domain.usecase.NoteUseCase
 import dagger.Module
@@ -42,7 +43,8 @@ object AppModule {
         return  NoteUseCase(
             getNotes =  GetNotes(repository),
             deleteNote =  DeleteNote(repository),
-            addNote = AddNote(repository)
+            addNote = AddNote(repository),
+            getNote = GetNote(repository = repository)
         )
     }
 }

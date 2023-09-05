@@ -6,7 +6,8 @@ import com.example.compose_arc.futures.notes.domain.entity.Note
 
 @Database(
     entities = [Note::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 abstract class NoteDatabase : RoomDatabase() {
     abstract val noteDoa:NoteDoa

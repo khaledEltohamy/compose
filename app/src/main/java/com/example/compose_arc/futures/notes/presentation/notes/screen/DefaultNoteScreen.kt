@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.compose_arc.core.Screen
 
 import com.example.compose_arc.futures.notes.presentation.notes.NoteEvent
 import com.example.compose_arc.futures.notes.presentation.notes.NotesViewModel
@@ -45,7 +46,9 @@ fun DefaultNoteScreen (navController: NavController , viewModel: NotesViewModel 
     Scaffold(
          snackbarHost = {SnackbarHost(snackbarHostState)},
         floatingActionButton = {
-            FloatingActionButton(onClick = { /*TODO*/ }) {
+            FloatingActionButton(onClick = {
+                navController.navigate(Screen.AddEditScreen.route)
+            }) {
                 Icon(imageVector = Icons.Default.Add, contentDescription = "Add note")
             }
         }) {
@@ -85,7 +88,12 @@ fun DefaultNoteScreen (navController: NavController , viewModel: NotesViewModel 
                 items(state.notes){
                      note -> NoteItem(note = note , modifier = Modifier
                     .fillMaxWidth()
-                    .clickable { } , onDeleteItem = {
+                    .clickable {
+                        navController.navigate(
+                            Screen.AddEditScreen.route +
+                                    "?noteId=${note.id}&noteColor=${note.color}"
+                        )
+                    } , onDeleteItem = {
                          viewModel.onEvent(NoteEvent.DeleteNote(note))
                     scope.launch {
                      val result =   snackbarHostState.showSnackbar(message = "Note deleted" , actionLabel = "Undo")

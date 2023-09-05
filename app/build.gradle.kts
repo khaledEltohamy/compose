@@ -3,11 +3,12 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
+    id ("dagger.hilt.android.plugin")
 }
 
 android {
     namespace = "com.example.compose_arc"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.compose_arc"
@@ -20,6 +21,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
     }
 
     buildTypes {
@@ -32,17 +34,18 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "18"
+
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+                kotlinCompilerExtensionVersion = "1.4.3"
     }
     packaging {
         resources {
@@ -72,14 +75,14 @@ dependencies {
 
      // DI Dagger
     implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
-    implementation("androidx.hilt:hilt-lifecycle-view-model:1.0.0-alpha03")
+    kapt("com.google.dagger:hilt-android-compiler:2.48")
+//    implementation("androidx.hilt:hilt-lifecycle-view-model:1.0.0-alpha03")
     kapt("androidx.hilt:hilt-compiler:1.1.0-alpha01")
 
     // Compose
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
-    implementation("androidx.navigation:navigation-compose:2.7.0")
-    implementation("androidx.compose.material:material-*:1.6.0-alpha03")
+    implementation("androidx.navigation:navigation-compose:2.5.3")
+//    implementation("androidx.compose.material:material-*:1.6.0-alpha03")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
     //coroutines
